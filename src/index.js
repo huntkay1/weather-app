@@ -1,7 +1,7 @@
 import './style.css';
 
-const locationInput = document.getElementById('location');
-const submitBttn = document.querySelector('button');
+const locationInput = document.getElementById('location-input');
+const submitBttn = document.getElementById('input-submit');
 
 submitBttn.addEventListener('click', (e) => {fetchData(e)});
 
