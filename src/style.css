@@ -58,3 +58,100 @@ form {
     width: 2.5em;
     display: flex;
 }
+
+
+/* MAIN */
+main {
+    display: grid;
+    grid-template-rows: 5fr 3fr;
+}
+
+#todays-forecast {
+    height: 100%;
+    grid-row: 1 / 2;
+}
+
+#main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+    margin-bottom: 1em;
+}
+
+#main-info h3 {
+    margin: 0;
+    font-size: 5em;
+    font-weight: 400;
+}
+
+#main-info h4 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+#high-low {
+    display: flex;
+    gap: 1em;
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+#sun-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3em;
+}
+
+#sunrise, #sunset {
+    display: flex;
+}
+
+#sunset p, #sunrise p {
+    margin-left: 12px;
+    font-weight: 500;
+}
+
+#sunrise {
+    margin-right: 30px;
+}
+
+#hourly-forecast {
+    display: flex;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-x: scroll;
+    margin-bottom: 2em;
+}
+
+.hour-card {
+    flex: 0 0 auto;
+    height: 100%;
+    width: 125px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.card-time {
+    font-size: 15px;
+    margin-bottom: 40px;
+}
+
+.card-temp {
+    font-size: 20px;
+}
+
+#daily-forecast {
+    background-color: green;
+    height: 300px;
+    grid-row: 2 / -1;
+}
+
+
+
+
