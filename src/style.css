@@ -212,6 +212,7 @@ main {
     border-radius: 10px;
     display: flex;
     align-items: center;
+    justify-content: space-around;
     padding: 1.5em;
     width: 20em;
     height: 8em;
@@ -226,7 +227,7 @@ main {
 }
 
 .day-card-info {
-    margin-left: 1em;
+    margin-left: 1vw;
 }
 
 .day-card-temp {
