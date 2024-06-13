@@ -76,15 +76,9 @@ form {
 
 
 /* MAIN */
-main {
-    display: grid;
-    grid-template-rows: 5fr 3fr;
-}
-
 #todays-forecast {
     height: 100%;
     width: 100%;
-    grid-row: 1 / 2;
 }
 
 #main-info {
@@ -138,8 +132,6 @@ main {
 /* HOURLY FORECAST */
 
 #hourly-forecast {
-    margin-left: 3em;
-    margin-right: 3em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -152,13 +144,14 @@ main {
     overflow-x: scroll;
     margin-bottom: 2em;
     padding: 3px;
-    width: 70vw;
+    width: 50vw;
 }
 
 #hourly-forecast h2 {
-    margin-left: 10vw;
+    margin-left: 25vw;
     margin-bottom: 0.5em;
     align-self: flex-start;
+    font-weight: 550;
 }
 
 .hour-card {
@@ -171,7 +164,7 @@ main {
     flex-direction: column;
     align-items: center;
     margin-right: 10px;
-    padding: 10px 5px;
+    padding: 18px 5px;
 }
 
 .card-time {
@@ -186,10 +179,7 @@ main {
 
 
 /* DAILY FORECAST */
-
 #daily-forecast {
-    margin-left: 3em;
-    margin-right: 3em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -198,16 +188,17 @@ main {
 
 #daily-forecast-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    width: 70vw;
+    justify-content: space-between;  
+    width: 60vw;
 }
 
-
 #daily-forecast h2 {
-    margin-left: 10vw;
+    margin-left: 25vw;
     margin-bottom: 0.5em;
     align-self: flex-start; 
+    font-weight: 550;
 }
 
 .day-card {
@@ -217,16 +208,24 @@ main {
     align-items: center;
     justify-content: space-around;
     padding: 1.5em;
-    width: 20em;
+    min-width: 30vw;
     height: 8em;
+    margin-bottom: 1em;
+}
+
+.day-card svg{
+    width: 80px;
+    height: 80px;
 }
 
 .card-date h3 {
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 1.75em;
 }
 
 .card-date h4 {
     font-weight: 400;
+    font-size: 1.25em;
 }
 
 .day-card-info {
