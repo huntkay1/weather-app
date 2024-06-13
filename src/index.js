@@ -10,13 +10,35 @@ const currentTemp = document.getElementById('current-temp');
 const sunrise = document.getElementById('sunrise-time');
 const sunset = document.getElementById('sunset-time');
 
+const fahrenheitBttn = document.getElementById("fahren-button");
+const celsiusBttn = document.getElementById('cels-button');
+fahrenheitBttn.addEventListener('click', (e) => tempUnitToggle(e))
+celsiusBttn.addEventListener('click', (e) => tempUnitToggle(e))
+
+let currentTempUnit = 'F';
+
+function tempUnitToggle(e) {
+    const unitBttn = e.target;
+    if (unitBttn.id === 'fahren-button') {
+        fahrenheitBttn.classList.add('active');
+        celsiusBttn.classList.remove('active');
+        currentTempUnit = 'F';
+    } else if (unitBttn.id === 'cels-button') {
+        celsiusBttn.classList.add('active');
+        fahrenheitBttn.classList.remove('active');
+        currentTempUnit = 'C';
+    };
+    fetchData();
+}
+
+
 submitBttn.addEventListener('click', (e) => {
     const location = locationInput.value;
     e.preventDefault();
     fetchData(location);
 });
 
-async function fetchData(location) {
+async function fetchData(location = 'South Haven Michigan') {
     const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=9db405c9b16d42809f511752240606&q=${location}&days=7`, {mode: 'cors'});
     const weatherData = await response.json();
     updateUI(weatherData);
@@ -37,9 +59,9 @@ function updateUI(weatherData) {
     const sunriseTime = forecastData.forecastday[0].astro.sunrise;
 
     locationName.innerHTML = locationData.name + ', ' + locationData.region;
-    todaysHighTemp.innerHTML = forecastData.forecastday[0].day.maxtemp_f;
-    todaysLowTemp.innerHTML = forecastData.forecastday[0].day.mintemp_f;
-    currentTemp.innerHTML = currentData.temp_f;
+    todaysHighTemp.innerHTML = currentTempUnit === 'F' ? forecastData.forecastday[0].day.maxtemp_f : forecastData.forecastday[0].day.maxtemp_c;
+    todaysLowTemp.innerHTML = currentTempUnit === 'F' ? forecastData.forecastday[0].day.mintemp_f : forecastData.forecastday[0].day.mintemp_c;
+    currentTemp.innerHTML = currentTempUnit === 'F' ? currentData.temp_f : currentData.temp_c;
     sunrise.innerHTML = sunriseTime;
     sunset.innerHTML = sunsetTime;
 
@@ -58,7 +80,7 @@ function updateCurrentDateAndTime() {
     headerTime.innerHTML = currentTime;
 }
 
-setInterval(updateCurrentDateAndTime, 60000)
+setInterval(updateCurrentDateAndTime, 10000); //updates current time every minute
 
 function createHourlyForecastCards(forecastData, sunriseTime, sunsetTime) {
     const hourlyWeatherData = forecastData.forecastday[0].hour;
@@ -67,7 +89,7 @@ function createHourlyForecastCards(forecastData, sunriseTime, sunsetTime) {
     
     hourlyWeatherData.forEach(hour => {
         const timeStamp = hour.time.split(' ')[1];
-        const temp = hour.temp_f;
+        const temp = currentTempUnit === 'F' ? hour.temp_f : hour.temp_c;
         const weatherCondition = hour.condition.text;
 
         const hourlyCard = document.createElement('div');
@@ -103,8 +125,8 @@ function createDailyForecastCards(forecastData) {
         const fullDate = format(parseISO(weekday.date), 'E MMM dd');
         const dayOfWeek = fullDate.slice(0,3);
         const date = fullDate.slice(4);
-        const highTemp = weekday.day.maxtemp_f;
-        const lowTemp = weekday.day.mintemp_f;
+        const highTemp = currentTempUnit === 'F' ? weekday.day.maxtemp_f : weekday.day.maxtemp_c;
+        const lowTemp = currentTempUnit === 'F' ? weekday.day.mintemp_f : weekday.day.mintemp_c;
         const weatherCondition = weekday.day.condition.text;
 
         const dayCard = document.createElement('div');
