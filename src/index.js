@@ -10,7 +10,6 @@ const currentTemp = document.getElementById('current-temp');
 const sunrise = document.getElementById('sunrise-time');
 const sunset = document.getElementById('sunset-time');
 
-
 submitBttn.addEventListener('click', (e) => {
     const location = locationInput.value;
     e.preventDefault();
@@ -29,6 +28,7 @@ window.addEventListener('load', () => {fetchData("South Haven Michigan");});
 
 
 function updateUI(weatherData) {
+    updateCurrentDateAndTime();
     const locationData = weatherData.location;
     const forecastData = weatherData.forecast;
     const currentData = weatherData.current;
@@ -46,6 +46,19 @@ function updateUI(weatherData) {
     createHourlyForecastCards(forecastData, sunriseTime, sunsetTime);
     createDailyForecastCards(forecastData);
 }
+
+function updateCurrentDateAndTime() {
+    const headerDate = document.getElementById('header-date');
+    const headerTime = document.getElementById('header-time');
+
+    const currentDate = new Date().toLocaleDateString("en-US", {month: 'long', day: 'numeric'});
+    const currentTime = new Date().toLocaleTimeString('en-US', {hour: "numeric", minute: "numeric"});
+
+    headerDate.innerHTML = currentDate;
+    headerTime.innerHTML = currentTime;
+}
+
+setInterval(updateCurrentDateAndTime, 60000)
 
 function createHourlyForecastCards(forecastData, sunriseTime, sunsetTime) {
     const hourlyWeatherData = forecastData.forecastday[0].hour;
@@ -83,6 +96,7 @@ function createDailyForecastCards(forecastData) {
 
     const dailyForecastContainer = document.getElementById('daily-forecast-container');
     dailyForecastContainer.innerHTML = '';
+
     const weekdays = forecastData.forecastday;
     
     weekdays.forEach(weekday => {
