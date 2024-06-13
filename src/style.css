@@ -72,6 +72,15 @@ form {
     padding: 5px;
     width: 2.5em;
     display: flex;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+}
+
+#unit-toggle button.active {
+    background-color: black;
+    color: white;
+    border-radius: 5px;
 }
 
 
