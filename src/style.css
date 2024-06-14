@@ -21,6 +21,7 @@ header {
     align-items: center;
     justify-content: space-evenly;
     margin-top: 1em;
+    margin-bottom: 3.5em;
 }
 
 #date-n-time {
@@ -102,18 +103,16 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 70px;
 }
 
 #main-info h3 {
-    font-size: 5em;
-    font-weight: 400;
+    font-size: 6em;
+    font-weight: 600;
 }
 
-#main-info h4 {
+#location {
     font-size: 1.2em;
     font-weight: 400;
-    margin-bottom: 0.5em;
     color: var(--subheadColor);
 }
 
@@ -121,22 +120,25 @@ form {
     display: flex;
     gap: 1em;
     font-size: 1.5em;
-    font-weight: 300;
+    font-weight: 350;
     margin-bottom: 1em;
 }
 
 #high-low p {
-    color: var(--subheadColor)
+    color: var(--subheadColor);
+    font-weight: 300;
 }
 
 #high-low span {
-    color: var(--textColor)
+    color: var(--textColor);
+    font-weight: 400;
 }
 
 #sun-info {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 30px;
     margin-bottom: 2em;
 }
 
@@ -150,13 +152,8 @@ form {
     font-weight: 400;
 }
 
-#sunrise {
-    margin-right: 30px;
-}
-
 
 /* HOURLY FORECAST */
-
 #hourly-forecast {
     display: flex;
     flex-direction: column;
@@ -178,12 +175,13 @@ form {
     margin-bottom: 1.5em;
     align-self: flex-start;
     font-weight: 550;
+    color: var(--subheadColor);
 }
 
 .hour-card {
     flex: 0 0 auto;
-    height: 8em;
-    width: 125px;
+    height: 100%;
+    width: 100px;
     border: 1.5px solid var(--textColor);
     border-radius: 8px;
     display: flex;
@@ -196,11 +194,16 @@ form {
 .card-time {
     font-size: 15px;
     margin-bottom: 1.5em;
+    border-bottom: 1px solid var(--subheadColor);
+    padding-bottom: 0.7em;
+    width: 3.5em;
+    text-align: center;
 }
 
 .hour-card-temp {
-    font-size: 20px;
-    margin-top: 1em;
+    font-size: 2em;
+    margin-top: 0.5em;
+    font-weight: 400;
 }
 
 
@@ -221,7 +224,7 @@ form {
     overflow-x: scroll;
     width: 65vw;
     height: 100%;
-    padding-top: 20px;
+    padding-top: 30px;
 }
 
 #daily-forecast h2 {
@@ -249,7 +252,7 @@ form {
 .day-card svg{
     width: 70px;
     height: 70px;
-    margin-top: -70px;
+    margin-top: -60px;
     background-color: var(--backgroundColor);
 }
 
@@ -264,7 +267,6 @@ form {
 }
 
 .day-card-info {
-    margin-top: -1.5em;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -274,21 +276,18 @@ form {
     display: flex;
     justify-content: space-between;
     gap: 18px;
-    margin-top: 1em;
-}
-
-.day-card-temp h3 {
-    font-weight: 500;
-    font-size: 1.25em;
+    margin-top: 1.5em;
 }
 
 .day-temp {
     display: flex;
     flex-direction: column;
+    font-size: 1.5em;
+    font-weight: 500;
 }
 
 .day-temp span{
-    font-size: 0.75em;
+    font-size: 0.6em;
     font-weight: 400;
     margin-left: -7px;
     margin-bottom: 2px;
