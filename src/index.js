@@ -145,9 +145,11 @@ function createDailyForecastCards(forecastData) {
         dayCardInfo.classList.add('day-card-info');
         cardDate.classList.add('card-date');
         dayCardTemp.classList.add('day-card-temp');
+        lowTempCont.classList.add('day-temp');
+        highTempCont.classList.add('day-temp');
 
-        highTempCont.innerHTML = `${highTemp} &#176 `;
-        lowTempCont.innerHTML = `${lowTemp} &#176 `;
+        highTempCont.innerHTML = `<span>High</span>${highTemp} &#176 `;
+        lowTempCont.innerHTML = `<span>Low</span>${lowTemp} &#176 `;
         dayOfWeekCont.innerHTML = dayOfWeek;
         dateCont.innerHTML = date;
         dayCardIcon.innerHTML = getWeatherConditionIcon(weatherCondition);
