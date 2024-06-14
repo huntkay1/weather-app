@@ -58,10 +58,10 @@ function updateUI(weatherData) {
     const sunsetTime = forecastData.forecastday[0].astro.sunset;
     const sunriseTime = forecastData.forecastday[0].astro.sunrise;
 
-    locationName.innerHTML = locationData.name + ', ' + locationData.region;
-    todaysHighTemp.innerHTML = currentTempUnit === 'F' ? forecastData.forecastday[0].day.maxtemp_f : forecastData.forecastday[0].day.maxtemp_c;
-    todaysLowTemp.innerHTML = currentTempUnit === 'F' ? forecastData.forecastday[0].day.mintemp_f : forecastData.forecastday[0].day.mintemp_c;
-    currentTemp.innerHTML = currentTempUnit === 'F' ? currentData.temp_f : currentData.temp_c;
+    locationName.innerHTML = locationData.name;
+    todaysHighTemp.innerHTML = currentTempUnit === 'F' ? Math.ceil(forecastData.forecastday[0].day.maxtemp_f) + '&#176' : Math.ceil(forecastData.forecastday[0].day.maxtemp_c) + '&#176';
+    todaysLowTemp.innerHTML = currentTempUnit === 'F' ? Math.ceil(forecastData.forecastday[0].day.mintemp_f) + '&#176': Math.ceil(forecastData.forecastday[0].day.mintemp_c) + '&#176';
+    currentTemp.innerHTML = currentTempUnit === 'F' ? Math.ceil(currentData.temp_f) : Math.ceil(currentData.temp_c);
     sunrise.innerHTML = sunriseTime;
     sunset.innerHTML = sunsetTime;
 
@@ -90,7 +90,7 @@ function createHourlyForecastCards(forecastData, sunriseTime, sunsetTime) {
     
     hourlyWeatherData.forEach(hour => {
         const timeStamp = hour.time.split(' ')[1];
-        const temp = currentTempUnit === 'F' ? hour.temp_f : hour.temp_c;
+        const temp = currentTempUnit === 'F' ? Math.ceil(hour.temp_f) : Math.ceil(hour.temp_c);
         const weatherCondition = hour.condition.text;
 
         const hourlyCard = document.createElement('div');
@@ -126,8 +126,8 @@ function createDailyForecastCards(forecastData) {
         const fullDate = format(parseISO(weekday.date), 'E MMM dd');
         const dayOfWeek = fullDate.slice(0,3);
         const date = fullDate.slice(4);
-        const highTemp = currentTempUnit === 'F' ? weekday.day.maxtemp_f : weekday.day.maxtemp_c;
-        const lowTemp = currentTempUnit === 'F' ? weekday.day.mintemp_f : weekday.day.mintemp_c;
+        const highTemp = currentTempUnit === 'F' ? Math.ceil(weekday.day.maxtemp_f) : Math.ceil(weekday.day.maxtemp_c);
+        const lowTemp = currentTempUnit === 'F' ? Math.ceil(weekday.day.mintemp_f) : Math.ceil(weekday.day.mintemp_c);
         const weatherCondition = weekday.day.condition.text;
         console.log(weatherCondition);
 
