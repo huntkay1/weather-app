@@ -35,6 +35,10 @@ module.exports = {
               name: '[path][name].[ext]',
             },
           },
+          {
+            test: /\.(jpg|png|svg|gif)$/,
+            type: 'asset/resource',
+          },
         ]
       }
       
