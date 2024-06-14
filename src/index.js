@@ -42,8 +42,6 @@ async function fetchData(location = 'South Haven Michigan') {
     const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=9db405c9b16d42809f511752240606&q=${location}&days=7`, {mode: 'cors'});
     const weatherData = await response.json();
     updateUI(weatherData);
-
-    return weatherData
 }
 
 window.addEventListener('load', () => {fetchData("South Haven Michigan");});
