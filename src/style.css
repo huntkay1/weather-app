@@ -185,6 +185,7 @@ form {
     padding: 3px;
     width: 68vw;
     box-shadow: inset -7px 0 7px -7px rgba(0,0,0,0.4);
+    z-index: 1;
 }
 
 #hourly-forecast h2 {
@@ -264,6 +265,9 @@ form {
     padding: 1em;
     margin-bottom: 1em;
     flex-shrink: 0;
+    /* position and z-index fixes box-shadow overlap */
+    position: relative;
+    z-index: -1; 
 }
 
 .day-card svg{
