@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="loader">
+        <script id="loading-gif" src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+         <dotlottie-player src="https://lottie.host/a8cc6b47-d45a-4fd5-8740-95cbd4e9efb8/WcDh3yHS24.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+    </div>
     <header>
         <div id="date-n-time">
             <h2 id="header-date"></h2>
@@ -69,5 +73,10 @@
 
     </main>
 
+    <script>
+        $(window).on('load', function () {
+          $('#loader').hide();
+        }) 
+      </script>
 </body>
 </html>

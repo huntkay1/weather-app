@@ -1,6 +1,7 @@
 import './style.css';
 import { format, parseISO } from 'date-fns';
 
+
 const locationInput = document.getElementById('location-input');
 const submitBttn = document.getElementById('input-submit');
 const locationName = document.getElementById('location');
@@ -9,6 +10,7 @@ const todaysLowTemp = document.getElementById('low-temp');
 const currentTemp = document.getElementById('current-temp');
 const sunrise = document.getElementById('sunrise-time');
 const sunset = document.getElementById('sunset-time');
+const loader = document.getElementById('loader');
 
 const fahrenheitBttn = document.getElementById("fahren-button");
 const celsiusBttn = document.getElementById('cels-button');
@@ -33,6 +35,7 @@ function tempUnitToggle(e) {
 
 
 submitBttn.addEventListener('click', (e) => {
+    loader.style.visibility = 'visible';
     const location = locationInput.value;
     e.preventDefault();
     fetchData(location);
@@ -42,6 +45,7 @@ async function fetchData(location = 'South Haven Michigan') {
     const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=9db405c9b16d42809f511752240606&q=${location}&days=7`, {mode: 'cors'});
     const weatherData = await response.json();
     updateUI(weatherData);
+    loader.style.visibility = 'hidden';
 }
 
 window.addEventListener('load', () => {fetchData("South Haven Michigan");});
