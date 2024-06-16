@@ -41,10 +41,16 @@ submitBttn.addEventListener('click', (e) => {
 });
 
 async function fetchData(location = 'South Haven Michigan') {
-    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=9db405c9b16d42809f511752240606&q=${location}&days=7`, {mode: 'cors'});
-    const weatherData = await response.json();
-    updateUI(weatherData);
-    loader.style.visibility = 'hidden';
+    try {
+        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=9db405c9b16d42809f511752240606&q=${location}&days=7`, {mode: 'cors'});
+        const weatherData = await response.json();
+        updateUI(weatherData);
+    } catch (error){
+        locationInput.value = '';
+        alert('Please try a different location')
+    }
+
+    loader.style.visibility = 'hidden'; 
 }
 
 window.addEventListener('load', () => {fetchData("South Haven Michigan");});
@@ -197,7 +203,7 @@ function formatHour(hour) {
         hour = hour.substring(1); //gets rid of 0 at the front
     }
 
-    const amOrPm = hour < 13 ? "AM" : "PM"; //since the hours end at 11PM
+    const amOrPm = hour < 13 ? "AM" : "PM"; 
 	let hourNumber = hour < 12 ? hour : hour - 12;
 	hourNumber === 0 ? (hourNumber = 12) : null;
 	return `${hourNumber} ${amOrPm}`;
