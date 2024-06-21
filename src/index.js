@@ -65,13 +65,15 @@ function updateUI(weatherData) {
 
     const sunsetTime = forecastData.forecastday[0].astro.sunset;
     const sunriseTime = forecastData.forecastday[0].astro.sunrise;
+    
 
     locationName.innerHTML = locationData.name;
     todaysHighTemp.innerHTML = currentTempUnit === 'F' ? Math.ceil(forecastData.forecastday[0].day.maxtemp_f) + '&#176' : Math.ceil(forecastData.forecastday[0].day.maxtemp_c) + '&#176';
     todaysLowTemp.innerHTML = currentTempUnit === 'F' ? Math.ceil(forecastData.forecastday[0].day.mintemp_f) + '&#176': Math.ceil(forecastData.forecastday[0].day.mintemp_c) + '&#176';
     currentTemp.innerHTML = currentTempUnit === 'F' ? Math.ceil(currentData.temp_f) : Math.ceil(currentData.temp_c);
-    sunrise.innerHTML = formatTime(sunriseTime.slice(0, 5)); //string contains "am/pm". Remove that before sending to format which will remove the zero in the front
-    sunset.innerHTML = formatTime(sunsetTime.slice(0, 5));
+    sunrise.innerHTML = formatTime(sunriseTime); //remove 0 from front
+    sunset.innerHTML = formatTime(sunsetTime); 
+
     
 
     createHourlyForecastCards(forecastData, sunriseTime, sunsetTime);
@@ -197,15 +199,21 @@ function getWeatherConditionIcon(weatherCondition, formattedHour, sunsetTime, su
     }
 }
 
-//reformats time from 24 hour time to 12 hour time
+//reformats from 24 hour time to 12 hour time and creates proper string for UI
+//format as 12 PM if for day card, format as 12:00 PM for everything else
 function formatTime(time, forDayCard = false) {
-    var dateObjectToFormat = new Date('1970-01-01T' + time)
+    
+    if (forDayCard) {
+        var dateObjectToFormat = new Date('1970-01-01T' + time) //turn to date object so i can format
+        return dateObjectToFormat.toLocaleTimeString('en-US', {hour12:true, hour:'numeric'}) 
+    }
+
+    if (time[0] === '0') {
+        return time.slice(1);
+    }
   
-    //format as 12 PM if for day card, format as 12:00 PM for everything else
-   return forDayCard ? dateObjectToFormat.toLocaleTimeString('en-US', {hour12:true, hour:'numeric'}) : dateObjectToFormat.toLocaleTimeString('en-US', {hour12:true, hour:'numeric', minute:'numeric'}) 
-
 }
-
+   
 
 
 
