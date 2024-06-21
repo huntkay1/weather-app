@@ -188,7 +188,7 @@ function getWeatherConditionIcon(weatherCondition, formattedHour, sunsetTime, su
         return sunIcon;
     } else if (weatherCondition === 'Partly Cloudy ' || weatherCondition === 'Patchy rain nearby') {
         return partlyCloudIcon;
-    } else if ( weatherCondition === 'Moderate rain' || weatherCondition === 'Patchy light drizzle' || weatherCondition === 'Light rain shower' || weatherCondition === 'Mist' || weatherCondition === 'Light rain' || weatherCondition === 'Moderate rain at times' || weatherCondition === 'Moderate or heavy rain shower' || weatherCondition === 'Heavy rain' || weatherCondition === 'Patchy rain nearby') {
+    } else if ( weatherCondition === 'Moderate rain' || weatherCondition === 'Fog' || weatherCondition === 'Patchy light rain' || weatherCondition === 'Patchy light drizzle' || weatherCondition === 'Light rain shower' || weatherCondition === 'Mist' || weatherCondition === 'Light rain' || weatherCondition === 'Moderate rain at times' || weatherCondition === 'Moderate or heavy rain shower' || weatherCondition === 'Heavy rain' || weatherCondition === 'Patchy rain nearby') {
         return rainIcon;
     } else if (weatherCondition === 'Overcast' || weatherCondition === 'Cloudy ' || weatherCondition === 'Overcast ') {
         return cloudIcon;
