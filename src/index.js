@@ -199,17 +199,15 @@ function getWeatherConditionIcon(weatherCondition, formattedHour, sunsetTime, su
 
 //reformats time from military time
 function formatHour(hour) {
-    hour = hour.slice(0,2); //get first two digits 
-    if (hour === '00') {
-        hour = '12'
-    }
+    hour = Number(hour.slice(0,2)); //get first two digits as a number
     if (hour[0] === "0") {
         hour = hour.substring(1); //gets rid of 0 at the front
     }
 
-    const amOrPm = hour < 13 ? "AM" : "PM"; 
-	let hourNumber = hour < 12 ? hour : hour - 12;
-	hourNumber === 0 ? (hourNumber = 12) : null;
+    const amOrPm = hour < 12 ? "AM" : "PM"; 
+	let hourNumber = hour < 12 ? hour : hour - 12; //formats times past noon
+	hourNumber === 0 ? (hourNumber = 12) : null; //changes 0 to midnight(12)
+
 	return `${hourNumber} ${amOrPm}`;
 }
 
