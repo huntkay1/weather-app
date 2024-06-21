@@ -1,0 +1,64 @@
+@media (max-width: 670px) {
+    header {
+        flex-direction: column-reverse;
+        padding: 0;
+        margin-top: 8vh;
+        margin-bottom: 5vh;
+    }
+    
+    form {
+        margin-right: 0;
+    }
+
+    #header-inputs {
+        display: flex;
+        gap: 6vw;
+        margin-bottom: 6vh;
+    }
+
+    #todays-forecast h3 {
+        font-size: 5em;
+    }
+
+    #high-low {
+        font-size: 1.2em;
+    }
+
+    #main-info {
+        margin-bottom: 2vh;
+    }
+
+    #hourly-forecast h2, #daily-forecast h2 {
+        margin-left: 12vw;
+        margin-bottom: 25px;
+    }
+
+    #sun-info {
+        margin-bottom: 3em;
+        font-size: 12px;
+    }
+
+    #sun-info svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .card-time {
+        font-size: 12px;
+    }
+
+    .hour-card-temp {
+        font-size: 1.5em;
+    }
+
+    #daily-forecast-container {
+        display: flex;
+        flex-direction: column;
+        box-shadow: none;
+    }
+
+    .day-card {
+        width: 55vw;
+        margin-bottom: 5vh;
+    }
+}

@@ -1,4 +1,5 @@
 import './style.css';
+import './mobile.css';
 import { format, parseISO } from 'date-fns';
 
 
