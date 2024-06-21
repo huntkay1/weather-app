@@ -62,7 +62,6 @@ function updateUI(weatherData) {
     const locationData = weatherData.location;
     const forecastData = weatherData.forecast;
     const currentData = weatherData.current;
-    console.log(weatherData)
 
     const sunsetTime = forecastData.forecastday[0].astro.sunset;
     const sunriseTime = forecastData.forecastday[0].astro.sunrise;
@@ -71,8 +70,9 @@ function updateUI(weatherData) {
     todaysHighTemp.innerHTML = currentTempUnit === 'F' ? Math.ceil(forecastData.forecastday[0].day.maxtemp_f) + '&#176' : Math.ceil(forecastData.forecastday[0].day.maxtemp_c) + '&#176';
     todaysLowTemp.innerHTML = currentTempUnit === 'F' ? Math.ceil(forecastData.forecastday[0].day.mintemp_f) + '&#176': Math.ceil(forecastData.forecastday[0].day.mintemp_c) + '&#176';
     currentTemp.innerHTML = currentTempUnit === 'F' ? Math.ceil(currentData.temp_f) : Math.ceil(currentData.temp_c);
-    sunrise.innerHTML = sunriseTime;
-    sunset.innerHTML = sunsetTime;
+    sunrise.innerHTML = formatTime(sunriseTime.slice(0, 5)); //string contains "am/pm". Remove that before sending to format which will remove the zero in the front
+    sunset.innerHTML = formatTime(sunsetTime.slice(0, 5));
+    
 
     createHourlyForecastCards(forecastData, sunriseTime, sunsetTime);
     createDailyForecastCards(forecastData);
@@ -110,7 +110,7 @@ function createHourlyForecastCards(forecastData, sunriseTime, sunsetTime) {
         hourlyCardTime.classList.add('card-time');
         hourlyCardTemp.classList.add('hour-card-temp');
 
-        const formattedHour = formatHour(timeStamp);
+        const formattedHour = formatTime(timeStamp, true);
         hourlyCardTime.innerHTML = formattedHour;
         hourlyCardIcon.innerHTML = getWeatherConditionIcon(weatherCondition, formattedHour, sunsetTime, sunriseTime);
         hourlyCardTemp.innerHTML = temp + '&#176';
@@ -197,19 +197,19 @@ function getWeatherConditionIcon(weatherCondition, formattedHour, sunsetTime, su
     }
 }
 
-//reformats time from military time
-function formatHour(hour) {
-    hour = Number(hour.slice(0,2)); //get first two digits as a number
-    if (hour[0] === "0") {
-        hour = hour.substring(1); //gets rid of 0 at the front
-    }
+//reformats time from 24 hour time to 12 hour time
+function formatTime(time, forDayCard = false) {
+    var dateObjectToFormat = new Date('1970-01-01T' + time)
+  
+    //format as 12 PM if for day card, format as 12:00 PM for everything else
+   return forDayCard ? dateObjectToFormat.toLocaleTimeString('en-US', {hour12:true, hour:'numeric'}) : dateObjectToFormat.toLocaleTimeString('en-US', {hour12:true, hour:'numeric', minute:'numeric'}) 
 
-    const amOrPm = hour < 12 ? "AM" : "PM"; 
-	let hourNumber = hour < 12 ? hour : hour - 12; //formats times past noon
-	hourNumber === 0 ? (hourNumber = 12) : null; //changes 0 to midnight(12)
-
-	return `${hourNumber} ${amOrPm}`;
 }
+
+
+
+
+
 
 
 
