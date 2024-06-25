@@ -213,6 +213,10 @@ function formatTime(time, forDayCard = false) {
     }
   
 }
+
+function clearNightCheck() {
+
+}
    
 
 

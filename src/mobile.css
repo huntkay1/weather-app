@@ -61,4 +61,12 @@
         width: 55vw;
         margin-bottom: 5vh;
     }
+
+    .day-card h3 {
+        font-size: 1.5em;
+    }
+
+    .day-card h4 {
+        font-size: 1.25em;
+    }
 }

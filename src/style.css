@@ -327,10 +327,20 @@ form {
 @media (max-width: 1429px) {
     #daily-forecast-container {
         flex-direction: column;
+        padding-top: 38px;
     }
 
     .day-card {
         margin-bottom: 5vh;
+        width: 40vw;
+    }
+
+    .day-card h3 {
+        font-size: 2em;
+    }
+
+    .day-card h4 {
+        font-size: 1.25em;
     }
 }
 
