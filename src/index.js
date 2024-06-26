@@ -62,6 +62,7 @@ function updateUI(weatherData) {
     const locationData = weatherData.location;
     const forecastData = weatherData.forecast;
     const currentData = weatherData.current;
+    console.log(weatherData);
 
     const sunsetTime = forecastData.forecastday[0].astro.sunset;
     const sunriseTime = forecastData.forecastday[0].astro.sunrise;
@@ -188,13 +189,13 @@ function getWeatherConditionIcon(weatherCondition, formattedHour, sunsetTime, su
 
     if (weatherCondition === 'Sunny' || weatherCondition === 'Clear ' || weatherCondition === 'Clear') {
         return sunIcon;
-    } else if (weatherCondition === 'Partly Cloudy ' || weatherCondition === 'Patchy rain nearby') {
+    } else if (weatherCondition === 'Partly Cloudy ' || weatherCondition === 'Patchy rain nearby' || weatherCondition === 'Partly cloudy') {
         return partlyCloudIcon;
-    } else if ( weatherCondition === 'Moderate rain' || weatherCondition === 'Fog' || weatherCondition === 'Patchy light rain' || weatherCondition === 'Patchy light drizzle' || weatherCondition === 'Light rain shower' || weatherCondition === 'Mist' || weatherCondition === 'Light rain' || weatherCondition === 'Moderate rain at times' || weatherCondition === 'Moderate or heavy rain shower' || weatherCondition === 'Heavy rain' || weatherCondition === 'Patchy rain nearby') {
+    } else if ( weatherCondition === 'Moderate rain' || weatherCondition === 'Light drizzle' || weatherCondition === 'Torrential rain shower' || weatherCondition === 'Fog' || weatherCondition === 'Patchy light rain' || weatherCondition === 'Patchy light drizzle' || weatherCondition === 'Light rain shower' || weatherCondition === 'Mist' || weatherCondition === 'Light rain' || weatherCondition === 'Moderate rain at times' || weatherCondition === 'Moderate or heavy rain shower' || weatherCondition === 'Heavy rain' || weatherCondition === 'Patchy rain nearby') {
         return rainIcon;
     } else if (weatherCondition === 'Overcast' || weatherCondition === 'Cloudy ' || weatherCondition === 'Overcast ') {
         return cloudIcon;
-    } else if (weatherCondition === 'Thundery outbreaks in nearby') {
+    } else if (weatherCondition === 'Thundery outbreaks in nearby' || weatherCondition === 'Patchy light rain in area with thunder') {
         return stormIcon;
     }
 }
